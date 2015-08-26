@@ -9,7 +9,13 @@ public class App {
   staticFileLocation("/public");
   String layout = "templates/layout.vtl";
 
-  
+  get("/", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    //categories here can be anything as long as it matches $categories
+    // model.put("cuisines", Cuisine.all());
+    model.put("template", "templates/index.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
 
 }//end of main
 
