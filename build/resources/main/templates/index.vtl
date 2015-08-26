@@ -1,1 +1,48 @@
 <h1>Cute Cuisine</h1>
+
+
+<h3><a href="#">Search Restaurants</a></h3>
+<h3><a href="#">Search Cuisines</a></h3>
+
+
+
+<p>Add a cuisine type</p>
+
+<form action ="/cuisines" method="post">
+  <div class="form-group">
+    <label for="foodtype">Name</label>
+    <input id="foodtype" name="foodtype" type="text">
+  </div>
+    <button type="submit" class="btn btn-success submit-foodtype">Submit</button>
+</form>
+
+<form action="/restaurants" method="post">
+  <div class="form-group">
+    <label for="cuisine_id">Select a cuisine</label>
+    <select id="cuisine_id" name="cuisine_id" type="text">
+      #foreach ($cuisine in $cuisines)
+      <option value="$cuisine.getId()">$cuisine.getFoodType()</option>
+      #end
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Add a restaurant</label>
+    <input id="name" name="name" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="city">Enter city</label>
+    <input id="city" name="city" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="hours">Enter hours of operation</label>
+    <input id="hours" name="hours" type="text" class="form-control" placeholder="10 a.m. - 10 p.m.">
+  </div>
+
+    <button type="submit" class="btn btn-success submit-name">Submit</button>
+</form>
+
+
+<h3><a href="/cuisines">Admin Page</a></h3>
