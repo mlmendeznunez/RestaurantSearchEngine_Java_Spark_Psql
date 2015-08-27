@@ -4,6 +4,15 @@
 <form action="/$cuisine.getId()/restaurants/restaurant.getId()/update" method="post">
 
   <div class="form-group">
+    <label for="cuisine_id">Select a new Cuisine</label>
+    <select id="cuisine_id" name="cuisine_id" type="text">
+      #foreach($cuisine in $cuisines)
+      <option value="$cuisine.getId()">$cuisine.getFoodType()</option>
+      #end
+    </select>
+  </div>
+
+  <div class="form-group">
     <label for="name">New name:</label>
     <input id="name" name="name" type="text" class="form-control">
   </div>
@@ -19,3 +28,5 @@
   </div>
 
   <button type="submit" class="btn btn-success">Submit</button>
+
+</form>

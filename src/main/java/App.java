@@ -55,9 +55,35 @@ public class App {
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
-  // get("/admin", (request, response) -> {
-  //   HashMap<String
-  // })
+  get("/cuisines/:id/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+    model.put("cuisine", cuisine);
+    model.put("template", "templates/cuisine-form.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("/cuisines/:id/update", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+    String foodtype = request.queryParams("foodtype");
+    cuisine.update(foodtype);
+    response.redirect("/cuisines");
+    return null;
+  });
+
+  post("cuisines/:id/delete", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+    cuisine.delete();
+  //  model.put("cuisines", Cuisine.all());
+    response.redirect("/cuisines");
+    return null;
+  });
+
+
+
+
 
 }//end of m
 
