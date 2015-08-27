@@ -2,6 +2,7 @@ import java.util.List;
 import org.sql2o.*;
 
 public class Restaurant {
+  public static int TAG_COUNTER = 1;
   private int id;
   private String name;
   private String city;
@@ -27,6 +28,16 @@ public class Restaurant {
   public String getHours() {
     return hours;
   }
+
+  public String getCuisineName() {
+    String sql = "SELECT foodtype FROM cuisines WHERE id=:id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", cuisine_id) //:id variable replaced with cuisine_id
+        .executeAndFetchFirst(String.class);
+    }
+  }
+
 
   public Restaurant(String name, String city, String hours, int cuisine_id) {
     this.name = name;
@@ -99,4 +110,5 @@ public class Restaurant {
         .executeUpdate();
     }
   }
+
 }

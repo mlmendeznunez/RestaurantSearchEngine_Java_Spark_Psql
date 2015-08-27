@@ -12,6 +12,7 @@ public class App {
   get("/", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     //categories here can be anything as long as it matches $categories
+
     model.put("cuisines", Cuisine.all());
     model.put("template", "templates/index.vtl");
     return new ModelAndView(model, layout);
@@ -31,11 +32,32 @@ public class App {
   get("/cuisines", (request, response) -> {
   //need to put :id in the url so that we can grab it below
     HashMap<String, Object> model = new HashMap<String, Object>();
+
+    model.put("restaurants", Restaurant.all());
     model.put("cuisines", Cuisine.all());
     model.put("template", "templates/admin.vtl");
     return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
 
+  post("/restaurants", (request, response) -> {
+    ///restaurants in index.vtl
+    //posts information from restaurant form on homepage.
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    Cuisine cuisine = Cuisine.find(Integer.parseInt(request.queryParams("cuisine_id")));
+    String name = request.queryParams("name");
+    String city = request.queryParams("city");
+    String hours = request.queryParams("hours");
+    Restaurant newRestaurant = new Restaurant(name, city, hours, cuisine.getId());
+    newRestaurant.save();
+    model.put("cuisine", cuisine);
+    model.put("cuisines", Cuisine.all());
+    model.put("template", "templates/index.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  // get("/admin", (request, response) -> {
+  //   HashMap<String
+  // })
 
 }//end of m
 

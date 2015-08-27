@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CuisineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2015-08-26T22:58:40" hostname="epicodus-107.local" time="0.265">
+<testsuite name="CuisineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2015-08-27T17:17:40" hostname="epicodus-107.local" time="0.201">
   <properties/>
-  <testcase name="getRestaurants_retrievesAllRestaurantsFromDatabase_restaurantList" classname="CuisineTest" time="0.184"/>
-  <testcase name="find_findsCuisineInDatabase_true" classname="CuisineTest" time="0.016"/>
+  <testcase name="getRestaurants_retrievesAllRestaurantsFromDatabase_restaurantList" classname="CuisineTest" time="0.12"/>
+  <testcase name="find_findsCuisineInDatabase_true" classname="CuisineTest" time="0.014"/>
   <testcase name="all_emptyAtFirst" classname="CuisineTest" time="0.009"/>
   <testcase name="save_savesIntoDatabase_true" classname="CuisineTest" time="0.015"/>
-  <testcase name="equals_returnsTrueIfFoodTypesAreTheSame" classname="CuisineTest" time="0.005"/>
+  <testcase name="equals_returnsTrueIfFoodTypesAreTheSame" classname="CuisineTest" time="0.006"/>
   <testcase name="update_changesCuisineNameInDatabase_true" classname="CuisineTest" time="0.019"/>
   <testcase name="delete_deletesCuisineFromDatabase_true" classname="CuisineTest" time="0.016"/>
   <system-out><![CDATA[]]></system-out>
