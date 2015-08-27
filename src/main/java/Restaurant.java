@@ -112,4 +112,14 @@ public class Restaurant {
     }
   }
 
+  public static List<Restaurant> search(String city, int cuisine) {
+    try(Connection con = DB.sql2o.open()) {
+     String sql = "SELECT id, name, city, hours, cuisine_id FROM restaurants WHERE city=:city AND cuisine_id=:cuisine;";
+     return con.createQuery(sql)
+      .addParameter("city", city)
+      .addParameter("cuisine", cuisine)
+      .executeAndFetch(Restaurant.class);
+    }
+  }
+
 }

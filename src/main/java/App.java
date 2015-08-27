@@ -3,6 +3,7 @@ import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App {
   public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class App {
   get("/", (request, response) -> {
     HashMap<String, Object> model = new HashMap<String, Object>();
     //categories here can be anything as long as it matches $categories
-
+    model.put("restaurants", Restaurant.all());
     model.put("cuisines", Cuisine.all());
     model.put("template", "templates/index.vtl");
     return new ModelAndView(model, layout);
@@ -115,7 +116,29 @@ public class App {
    model.put("cuisines", Cuisine.all());
    return new ModelAndView(model, layout);
   }, new VelocityTemplateEngine());
-  //
 
-}//end of main
+  get("/search", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    //categories here can be anything as long as it matches $categories
+    model.put("restaurants", Restaurant.all());
+    model.put("cuisines", Cuisine.all());
+    model.put("template", "templates/search.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  post("/search", (request, response) -> {
+    HashMap<String, Object> model = new HashMap<String, Object>();
+    int cuisine = Integer.parseInt(request.queryParams("cuisine_id"));
+    String city = request.queryParams("city");
+
+    List<Restaurant> searchResults = Restaurant.search(city, cuisine);
+    model.put("searchResults", searchResults);
+    model.put("cuisine", cuisine);
+    model.put("restaurants", Restaurant.all());
+    model.put("cuisines", Cuisine.all());
+    model.put("template", "templates/search.vtl");
+    return new ModelAndView(model, layout);
+  }, new VelocityTemplateEngine());
+
+  }//end of main
 }//end of app
