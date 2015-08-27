@@ -1,16 +1,7 @@
 <!--Edits restaurants-->
 <h3>Update $restaurant.getName()</h3>
 
-<form action="/$cuisine.getId()/restaurants/restaurant.getId()/update" method="post">
-
-  <div class="form-group">
-    <label for="cuisine_id">Select a new Cuisine</label>
-    <select id="cuisine_id" name="cuisine_id" type="text">
-      #foreach($cuisine in $cuisines)
-      <option value="$cuisine.getId()">$cuisine.getFoodType()</option>
-      #end
-    </select>
-  </div>
+<form action="/$cuisine.getId()/restaurants/$restaurant.getId()/update" method="post">
 
   <div class="form-group">
     <label for="name">New name:</label>
@@ -29,4 +20,9 @@
 
   <button type="submit" class="btn btn-success">Submit</button>
 
+</form>
+
+
+<form action="/$cuisine.getId()/restaurants/$restaurant.getId()/delete" method="post">
+  <button type="submit" class="btn btn-danger">Delete</button>
 </form>

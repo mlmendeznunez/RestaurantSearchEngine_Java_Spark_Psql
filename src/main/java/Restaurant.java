@@ -99,15 +99,16 @@ public class Restaurant {
     }
   }
 
-  public void update(String name){
+  public void update(String name, String city, String hours){
     try(Connection con = DB.sql2o.open()){
-      String sql = "UPDATE restaurants SET name =:name, city=:city, hours=:hours cuisine_id=:cuisine_id WHERE id=:id";
+      String sql = "UPDATE restaurants SET name =:name, city=:city, hours=:hours WHERE id=:id";
       con.createQuery(sql)
-        .addParameter("name", this.name)
-        .addParameter("city", this.city)
-        .addParameter("hours", this.hours)
-        .addParameter("cuisine_id", this.cuisine_id)
+        .addParameter("name", name)
+        .addParameter("city", city)
+        .addParameter("hours", hours)
+        .addParameter("id", id)
         .executeUpdate();
+
     }
   }
 

@@ -10,11 +10,12 @@
   </div>
 
 
+
   <div class="col-md-6">
     <h2>All Restaurants</h2>
     #foreach($restaurant in $restaurants)
      <div class="well">
-     <h3 class="clickable"><a href="/restaurants/$restaurant.getId()">$restaurant.getName()</a></h3>
+     <h3 class="clickable"><a href="/$restaurant.getCuisineId()/restaurants/$restaurant.getId()/update">$restaurant.getName()</a></h3>
      <h5><p>$restaurant.getCity()</p></h5>
      <h5><p>$restaurant.getHours()</p></h5>
      <h5><p>$restaurant.getCuisineName()</h5>
@@ -22,3 +23,6 @@
     #end
   </div>
 </div>
+
+
+<a href="/">home</a>
