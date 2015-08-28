@@ -1,5 +1,18 @@
 <!--Search by cuisine  Search restaurants by: -->
+<div class="row">
+  <div class="col-md-12">
+    <h1>Cute Cuisine</h1>
 
-#foreach($search in $searchResults)
-  $search.getName()
-#end
+
+      #foreach($search in $searchResults)
+        <div class="well">
+          $search.getName()
+          <li>$search.getCity()</li>
+          <li>$search.getHours()</li>
+          <li>$search.getCuisineName()</li>
+        </div>
+      #end
+  </div>
+</div>
+
+<br><h3><a href="/">Home</a></h3></br>
